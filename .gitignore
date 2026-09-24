@@ -1,0 +1,2 @@
+# installer binaries go on the GitHub Releases page, not into git
+release-assets/*.exe

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rpt2frx - Crystal Reports to FastReport</title>
+<meta name="description" content="Convert Crystal Reports (.rpt) files into FastReport templates (.frx). Beta.">
+<style>
+  :root { --bg:#ffffff; --fg:#1b1f24; --muted:#59636e; --card:#f6f8fa; --line:#d0d7de; --accent:#0b5fff; --accent-fg:#ffffff; --warn:#fff8c5; --warn-line:#d4a72c; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --card:#151b23; --line:#30363d; --accent:#4c8dff; --accent-fg:#0d1117; --warn:#2d2a12; --warn-line:#9e6a03; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:820px; margin:0 auto; padding:0 16px 64px; }
+  header { padding:56px 0 24px; }
+  h1 { font-size:2.2rem; margin:0 0 8px; }
+  h2 { margin-top:40px; font-size:1.35rem; }
+  .lead { font-size:1.15rem; color:var(--muted); margin:0; }
+  .btn { display:inline-block; background:var(--accent); color:var(--accent-fg); padding:12px 22px; border-radius:8px; text-decoration:none; font-weight:600; margin:20px 0 6px; }
+  .small { color:var(--muted); font-size:.9rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:14px 18px; }
+  .note { background:var(--warn); border:1px solid var(--warn-line); border-radius:8px; padding:12px 16px; }
+  pre, code { font-family:ui-monospace,Consolas,monospace; font-size:.92em; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 16px; overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; }
+  td, th { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+  a { color:var(--accent); }
+  .hash { word-break:break-all; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>rpt2frx</h1>
+  <p class="lead">Convert Crystal Reports (<code>.rpt</code>) into FastReport templates (<code>.frx</code>) with one command. Free beta for Windows.</p>
+  <a class="btn" href="https://github.com/OWNER/rpt2frx/releases/latest">Download the beta installer</a>
+  <div class="small">Windows 10/11 64-bit &middot; version 0.1.0-beta.1 &middot; everything runs on your PC, nothing is uploaded</div>
+</header>
+
+<div class="note"><strong>Requires the SAP Crystal Reports runtime.</strong> rpt2frx reads .rpt files through the free 64-bit
+<em>SAP Crystal Reports runtime engine for .NET Framework</em>, which you install separately from SAP. The installer checks for it and shows you where to get it.
+Converting an existing <code>.metadata.json</code> file does not need it.</div>
+
+<h2>What it does</h2>
+<p>rpt2frx reads a report's design only (sections, fields, groups, totals, formulas, formatting; no data) and writes a FastReport template that you open and finish in the free FastReport designer.</p>
+
+<h2>Quick start</h2>
+<pre>rpt2frx --version
+rpt2frx doctor
+rpt2frx "C:\Reports\Sales.rpt" --preview</pre>
+<p>This writes <code>Sales.frx</code> next to the report, plus <code>Sales.preview.pdf</code> and PNG pages with sample data so you can check the layout. Open a <strong>new</strong> terminal after installing so the command is found. You can also right-click a <code>.rpt</code> file and choose <em>Convert with rpt2frx</em>, or run <code>rpt2frx</code> with no arguments for a guided menu.</p>
+
+<h2>Install</h2>
+<ol>
+  <li>Download <code>rpt2frxSetup-0.1.0-beta.1.exe</code> from the <a href="https://github.com/OWNER/rpt2frx/releases/latest">Releases page</a>.</li>
+  <li>Run it. The beta installer is not code-signed yet, so Windows may say <em>unknown publisher</em>: choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+  <li>Read the system-check page. It tells you if the SAP runtime or .NET Framework 4.8 is missing and how to get it.</li>
+  <li>Keep <em>Add rpt2frx to PATH</em> ticked.</li>
+</ol>
+<div class="card small">Verify your download (optional). Expected SHA-256:<br><code class="hash">9FA8FC2BDF8952DFC3384F179DA4C033FA7F1EBA01298FA7DAE9525B7DA36D04</code><br>
+Check yours with <code>Get-FileHash rpt2frxSetup-0.1.0-beta.1.exe</code> in PowerShell.</div>
+
+<h2>Known limits (beta)</h2>
+<table>
+<tr><th>Area</th><th>Status</th></tr>
+<tr><td>Logos / pictures</td><td>Image data is not exported. Use <code>--picture logo.png</code>.</td></tr>
+<tr><td>Formulas</td><td>Common ones convert (If/Then/Else, running totals, sums). Some functions such as <code>propercase</code>, <code>towords</code>, <code>left</code> are not translated and are listed as warnings.</td></tr>
+<tr><td>Subreports, charts, cross-tabs</td><td>Not converted yet; reported as warnings.</td></tr>
+<tr><td>Layout</td><td>Close to the original, not pixel-identical. Always review the result.</td></tr>
+</table>
+
+<h2>Feedback and help</h2>
+<p><a href="https://github.com/OWNER/rpt2frx/issues/new/choose">Report a problem or send feedback</a>. Please attach the output of <code>rpt2frx doctor</code>. Do not upload confidential reports; a screenshot with the data hidden is enough.</p>
+<p><a href="GETTING-STARTED.md">Full getting-started guide</a></p>
+
+<p class="small" style="margin-top:48px">Pre-release software, provided as is. rpt2frx is not affiliated with or endorsed by SAP SE or Fast Reports Inc. "Crystal Reports" and "SAP" are trademarks of SAP SE; "FastReport" is a trademark of Fast Reports Inc. See <a href="../THIRD-PARTY-NOTICES.txt">third-party notices</a>.</p>
+</main>
+</body>
+</html>

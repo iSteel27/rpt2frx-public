@@ -1,0 +1,22 @@
+CrystalMetadata - third-party software
+
+CrystalMetadata includes the open source components listed below. Each is used under its own licence.
+
+  FastReport Open Source ............ MIT License     https://github.com/FastReports/FastReport
+  Newtonsoft.Json ................... MIT License     https://www.newtonsoft.com/json
+  NJsonSchema ....................... MIT License     https://github.com/RicoSuter/NJsonSchema
+  Serilog (and sinks/extensions) .... Apache License 2.0   https://serilog.net
+  Microsoft.Extensions.* ............ MIT License     https://github.com/dotnet/runtime
+  .NET runtime ...................... MIT License     https://github.com/dotnet/runtime
+
+NOT INCLUDED: the SAP Crystal Reports runtime.
+CrystalMetadata reads .rpt files through the SAP Crystal Reports runtime that is installed on your PC. That runtime is
+provided by SAP under SAP's own licence terms and is not part of, or distributed with, CrystalMetadata.
+"Crystal Reports" and "SAP" are trademarks of SAP SE. CrystalMetadata is not affiliated with or endorsed by SAP.
+FastReport is a trademark of Fast Reports Inc.; CrystalMetadata uses the open source edition only.
+
+MIT License (summary): permission is granted, free of charge, to use, copy, modify and distribute the software, provided
+the copyright notice and this permission notice are included. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+Apache License 2.0 (summary): permission to use, reproduce and distribute, provided the licence and notices are kept;
+provided "AS IS", without warranties or conditions of any kind. Full text: https://www.apache.org/licenses/LICENSE-2.0

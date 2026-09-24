@@ -1,0 +1,28 @@
+name: Beta feedback
+description: Tell us how the beta worked for you
+labels: [feedback]
+body:
+  - type: dropdown
+    id: install
+    attributes:
+      label: Did the installation work?
+      options: [Yes, "Yes, after fixing something", No]
+    validations: { required: true }
+  - type: dropdown
+    id: accuracy
+    attributes:
+      label: How close was the converted layout to your Crystal report? (5 = very close)
+      options: ["1", "2", "3", "4", "5"]
+    validations: { required: true }
+  - type: textarea
+    id: differences
+    attributes:
+      label: What was different from Crystal? (screenshots welcome, hide data)
+  - type: textarea
+    id: types
+    attributes:
+      label: What kinds of reports do you have? (subreports, groups, charts, cross-tabs, many pages...)
+  - type: input
+    id: price
+    attributes:
+      label: Would you pay for this, and roughly how much?
